@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Bank UI</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .bank-box {
+            background-color: white;
+            padding: 25px;
+            width: 320px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin-top: 8px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            color: white;
+            border-radius: 4px;
+        }
+
+        #b1 {
+            background-color: #28a745;
+        }
+
+        #b2 {
+            background-color: #dc3545;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bank-box">
+
+        <h2>Balance : $<span id="balance"></span></h2>
+
+        <label for="amount">Amount</label><br><br>
+        <input type="number" placeholder="Enter amount" id="amount">
+        <br><br>
+
+        <button id="b1" onclick="deposit()">Deposit</button>
+        &nbsp;&nbsp;
+        <button id="b2" onclick="withdraw()">Withdraw</button>
+
+        <p id="message"></p>
+
+    </div>
+
+</body>
+
+<script>
+    let balance = 0;
+
+    function deposit() {
+        let paisa = document.getElementById('amount').value;
+        if (paisa > 0) {
+            balance = balance + Number(paisa);
+            document.getElementById('balance').innerText = balance;
+            document.getElementById('message').innerText = "Paisa Prapt";
+        } else {
+            document.getElementById('message').innerText = "Enter a Valid Paisa";
+        }
+        document.getElementById('amount').value = "";
+    }
+
+    function withdraw() {
+        let paisa = document.getElementById('amount').value;
+        if (paisa > 0 && paisa <= balance) {
+            balance = balance - Number(paisa);
+            document.getElementById('balance').innerText = balance;
+            document.getElementById('message').innerText = "Withdraw Successfully!";
+        } else {
+            document.getElementById('message').innerText = "Enter a Valid Paisa";
+        }
+        document.getElementById('amount').value = "";
+    }
+</script>
+</html>
